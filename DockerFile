@@ -12,4 +12,4 @@ RUN /scripts/setup.sh
 WORKDIR /mnt/ruby
 CMD ["/usr/local/bin/sft-server","5000","/scripts/scripts.sh"]
 
-EXPOSE tcp:5000
+EXPOSE 5000/tcp
