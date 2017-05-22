@@ -1,0 +1,22 @@
+# This Dockerfile has been built for Project and Laboratories at Politecnico di Torino.
+
+FROM postgres
+
+LABEL it.polito.project2017.maintainer="Emanuele Jaume Marco" it.polito.project2017.version="0.1" it.polito.project2017.description="Dockerfile for PostgreSQL"
+
+# Install apt based dependencies required to run Rails as 
+# well as RubyGems. As the Ruby image itself is based on a 
+# Debian image, we use apt-get to install those.
+# Configure the main working directory. This is the base 
+# directory used in any further RUN, COPY, and ENTRYPOINT 
+# commands.
+ADD init.sql /docker-entrypoint-initdb.d/
+# Create a volume inside the container in the absolute path specified
+# remember to create a volume in the HOST OS by command line
+VOLUME /datadb
+
+# Expose port 5432 to the Docker host, so we can access it 
+# from the outside.
+EXPOSE 5432
+
+# http://stackoverflow.com/questions/26598738/how-to-create-user-database-in-script-for-docker-postgres

@@ -1,3 +1,0 @@
-docker build -t mydocker .
-docker run -p 5000:5000 --name mydocker -d mydocker
-

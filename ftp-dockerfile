@@ -1,0 +1,11 @@
+FROM ubuntu:17.04
+
+LABEL it.polito.project2017.maintainer="Emanuele Jaume Marco" it.polito.project2017.version="0.1" it.polito.project2017.description="Dockerfile for custom FTP server"
+
+VOLUME ["/mnt/ruby"]
+EXPOSE 5000/tcp
+
+COPY setup/ftp-script.sh setup/ftp-setup.sh /scripts/
+RUN chmod +x /scripts/ftp-script.sh && chmod +x /scripts/ftp-setup.sh && /scripts/ftp-setup.sh && cd /mnt/ruby
+
+CMD ["/usr/local/bin/sft-server","5000","/scripts/ftp-script.sh"]

@@ -1,0 +1,42 @@
+# This Dockerfile has been built for Project and Laboratories at Politecnico di Torino.
+
+FROM ruby:2.4.1
+
+LABEL it.polito.project2017.maintainer="Emanuele Jaume Marco" it.polito.project2017.version="0.1" it.polito.project2017.description="Dockerfile for Rails"
+
+# Install apt based dependencies required to run Rails as 
+# well as RubyGems. As the Ruby image itself is based on a 
+# Debian image, we use apt-get to install those.
+# Configure the main working directory. This is the base 
+# directory used in any further RUN, COPY, and ENTRYPOINT 
+# commands.
+
+RUN apt-get update -qq \
+	&& rm /bin/sh && ln -s /bin/bash /bin/sh \
+	&& apt-get install -y sudo apt-utils build-essential libpq-dev nodejs \
+	&& mkdir /setup
+
+# Copy the Gemfile as well as the Gemfile.lock and install 
+# the RubyGems. This is a separate step so the dependencies 
+# will be cached unless changes to one of those two files 
+# are made.
+
+# COPY src1 src2 ... src-N dst
+COPY ./setup ./setup
+
+RUN chmod +x ./setup/main.sh && cd /
+
+# Create a volume inside the container in the absolute path specified
+# remember to create a volume in the HOST OS by command line
+VOLUME /volume
+
+# Expose port 3000 to the Docker host, so we can access it 
+# from the outside.
+EXPOSE 3000
+
+# The main command to run when the container starts. Also 
+# tell the Rails dev server to bind to all interfaces by 
+# default.
+# CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+# CMD ["rails", "s"]
+CMD ["./setup/main.sh"]
