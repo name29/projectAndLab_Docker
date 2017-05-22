@@ -1,5 +1,5 @@
 ### NOTE ###
-IP will be provided as serial starting from 1172.17.0.x
+IP will be provided as serial starting from 172.17.0.x
 
 Order:
 
