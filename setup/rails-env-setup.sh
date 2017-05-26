@@ -32,4 +32,6 @@ cd /workspace/p-l-ws/
 export PROJWS_HOST="172.17.0.2"
 RAILS_ENV=production rails db:create
 RAILS_ENV=production rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+echo "Removing old pid"
+rm /volume/workspace/p-l-ws/tmp/pids/server.pid
 RAILS_ENV=production rails s
