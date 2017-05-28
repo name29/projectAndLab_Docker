@@ -1,9 +1,11 @@
-FROM ubuntu:17.04
+FROM base-sft
 
 LABEL it.polito.project2017.maintainer="Emanuele Jaume Marco" it.polito.project2017.version="0.1" it.polito.project2017.description="Dockerfile for custom sft server"
 
-VOLUME ["/mnt/ruby"]
+VOLUME /var/www
+
 EXPOSE 5000/tcp
+EXPOSE 80/tcp
 
 COPY setup/sft-script.sh setup/sft-setup.sh setup/sft-start.sh /scripts/
 RUN chmod +x /scripts/sft-script.sh && chmod +x /scripts/sft-setup.sh && chmod +x /scripts/sft-start.sh && /scripts/sft-setup.sh

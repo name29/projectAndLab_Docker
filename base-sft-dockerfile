@@ -1,0 +1,7 @@
+FROM ubuntu:17.04
+
+RUN apt-get update
+RUN apt-get install imagemagick wget apache2 -y
+RUN mkdir -p /var/www/html
+
+CMD ["/etc/init.d/apache2","start"]

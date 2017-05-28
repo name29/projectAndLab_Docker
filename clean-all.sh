@@ -17,3 +17,6 @@ docker container rm ftp-custom --force
 docker container rm sfp-custom --force
 docker container rm sft-custom --force
 docker container rm rails-env --force
+
+docker rmi base-sft --force
+docker rmi base-rails --force

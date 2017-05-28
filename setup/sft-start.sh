@@ -1,14 +1,7 @@
 #!/bin/bash
 
-DIR="/mnt/ruby/workspace/p-l-ws/app/assets"
-
-while [ -d "$DIR" ];
-do
-	echo "Waiting for directory $DIR"
-	sleep 3
-done
-
-cd $DIR
-
+mkdir -p /var/www/html
+cd /var/www/html
+/etc/init.d/apache2 start
 /usr/local/bin/sft-server 5000 /scripts/sft-script.sh
 

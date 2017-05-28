@@ -11,10 +11,12 @@ LABEL it.polito.project2017.maintainer="Emanuele Jaume Marco" it.polito.project2
 # directory used in any further RUN, COPY, and ENTRYPOINT 
 # commands.
 
-RUN apt-get update -qq \
-	&& rm /bin/sh && ln -s /bin/bash /bin/sh \
-	&& apt-get install -y sudo apt-utils build-essential libpq-dev nodejs \
-	&& mkdir /setup
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh 
+RUN apt-get update 
+RUN apt-get install -y sudo apt-utils build-essential libpq-dev nodejs
+RUN mkdir /setup 
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - && gem install rails && rails -v 
+RUN apt-get -y autoremove && apt-get -y clean && apt-get -y autoclean 
 
 # Copy the Gemfile as well as the Gemfile.lock and install 
 # the RubyGems. This is a separate step so the dependencies 
@@ -22,18 +24,14 @@ RUN apt-get update -qq \
 # are made.
 
 # COPY src1 src2 ... src-N dst
-COPY ./setup ./setup
+#COPY ./setup ./setup
 
 #RUN chmod +x ./setup/main.sh && cd /
-RUN chmod +x /setup/*.sh  && /setup/rails-install.sh
-
-# Create a volume inside the container in the absolute path specified
-# remember to create a volume in the HOST OS by command line
-VOLUME /volume
+#RUN chmod +x /setup/*.sh  && /setup/rails-install.sh
 
 # Expose port 3000 to the Docker host, so we can access it 
 # from the outside.
-EXPOSE 3000
+#EXPOSE 3000
 
 # The main command to run when the container starts. Also 
 # tell the Rails dev server to bind to all interfaces by 
