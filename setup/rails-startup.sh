@@ -14,6 +14,7 @@ bundle install
 export PROJWS_HOST="172.17.0.2"
 RAILS_ENV=production rails db:create
 RAILS_ENV=production rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+RAILS_ENV=production rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 RAILS_ENV=production rails db:seed
 
 rm tmp/pids/server.pid
