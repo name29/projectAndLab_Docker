@@ -10,6 +10,7 @@ else
 	cd p-l-ws
 fi
 bundle install
+bundle update
 
 export PROJWS_HOST="172.17.0.2"
 RAILS_ENV=production rails db:create

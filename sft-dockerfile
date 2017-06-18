@@ -8,6 +8,6 @@ EXPOSE 5000/tcp
 EXPOSE 80/tcp
 
 COPY setup/sft-script.sh setup/sft-setup.sh setup/sft-start.sh /scripts/
-RUN chmod +x /scripts/sft-script.sh && chmod +x /scripts/sft-setup.sh && chmod +x /scripts/sft-start.sh && /scripts/sft-setup.sh
+RUN chmod +x /scripts/sft-script.sh && chmod +x /scripts/sft-setup.sh && chmod +x /scripts/sft-start.sh && sleep 10 && /scripts/sft-setup.sh
 
 CMD ["/scripts/sft-start.sh"]
