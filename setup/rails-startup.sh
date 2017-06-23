@@ -1,6 +1,7 @@
 #!/bin/bash
 
-rm /etc/resolv.conf
+echo "" > /etc/resolv.conf
+
 echo "nameserver 130.192.3.21" >> /etc/resolv.conf
 echo "nameserver 130.192.3.24" >> /etc/resolv.conf
 echo "nameserver 130.192.3.103" >> /etc/resolv.conf
