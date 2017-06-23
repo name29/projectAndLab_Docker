@@ -5,6 +5,8 @@ echo "" > /etc/resolv.conf
 echo "nameserver 130.192.3.21" >> /etc/resolv.conf
 echo "nameserver 130.192.3.24" >> /etc/resolv.conf
 echo "nameserver 130.192.3.103" >> /etc/resolv.conf
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 
 if [ -d "p-l-ws" ]; then
 	cd p-l-ws
