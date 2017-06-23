@@ -1,5 +1,10 @@
 #!/bin/bash
 
+rm /etc/resolv.conf
+echo "nameserver 130.192.3.21" >> /etc/resolv.conf
+echo "nameserver 130.192.3.24" >> /etc/resolv.conf
+echo "nameserver 130.192.3.103" >> /etc/resolv.conf
+
 cd /workspace
 
 if [ -d "p-l-ws" ]; then
@@ -14,7 +19,6 @@ bundle update
 
 export PROJWS_HOST="172.17.0.2"
 RAILS_ENV=production rails db:create
-RAILS_ENV=production rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 RAILS_ENV=production rails db:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 RAILS_ENV=production rails db:seed
 
